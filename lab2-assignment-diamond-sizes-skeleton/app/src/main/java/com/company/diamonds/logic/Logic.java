@@ -11,7 +11,7 @@ import com.company.diamonds.ui.OutputInterface;
  * learn the complexities of Android.
  */
 public class Logic
-       implements LogicInterface {
+        implements LogicInterface {
     /**
      * This is a String to be used in Logging (if/when you decide you
      * need it for debugging).
@@ -35,7 +35,7 @@ public class Logic
      * It assigns the passed in [MainActivity] instance (which
      * implements [OutputInterface]) to 'out'.
      */
-    public Logic(OutputInterface out){
+    public Logic(OutputInterface out) {
         mOut = out;
     }
 
@@ -44,8 +44,67 @@ public class Logic
      * on-screen button labeled 'Process...' is pressed.
      */
     public void process(int size) {
+        for (int i = 0; i <= size; i++) {// TOP
+            if (i == 0) {
+                mOut.print("+");
+                mOut.print(new String(new char[size * 2]).replace("\0", "-"));
+                mOut.println("+");
+            }
+        }
+        for (int i = 0; i < size; i++){
+            if(i == 0 && size > 1){//TOP
+                mOut.print("|");
+                mOut.print(new String(new char[size-1]).replace("\0", " "));
+                mOut.print("/\\");
+                mOut.print(new String(new char[size-1]).replace("\0", " "));
+                mOut.println("|");
+            }
+            else if(i == size-1){//mid
+                mOut.print("|");
+                mOut.print("<");
+                if(i%2==0){
+                    mOut.print(new String(new char[size*2-2]).replace("\0", "="));
+                }
+                if(i%2!=0){
+                    mOut.print(new String(new char[size*2-2]).replace("\0", "-"));
+                }
+                mOut.print(">");
+                mOut.println("|");
+            }else {
+                mOut.print("|");
+                mOut.print(new String(new char[size-i-1]).replace("\0", " "));
+                mOut.print("/");
+                if(i%2==0) {
+                    mOut.print(new String(new char[i * 2]).replace("\0", "="));
+                }else{
+                    mOut.print(new String(new char[i*2]).replace("\0", "-"));
+                }
+                mOut.print("\\");
+                mOut.print(new String(new char[size-i-1]).replace("\0", " "));
+                mOut.println("|");
+            }
 
-        // TODO -- add your code here
+        }
+        for (int i = 1; i<size; i++){
+            mOut.print("|");
+            mOut.print(new String(new char[i]).replace("\0", " "));
+            mOut.print("\\");
+            if((size-i)%2==0){
+                mOut.print(new String(new char[(size-i-1)*2]).replace("\0", "-"));
+            }else{
+                mOut.print(new String(new char[(size-i-1)*2]).replace("\0", "="));
+            }
+            mOut.print("/");
+            mOut.print(new String(new char[i]).replace("\0", " "));
+            mOut.println("|");
+        }
+        for (int i = 0; i <= size; i++) {//BOT
+            if (i == size) {
+                mOut.print("+");
+                mOut.print(new String(new char[size * 2]).replace("\0", "-"));
+                mOut.println("+");
+            }
+        }
 
     }
 
