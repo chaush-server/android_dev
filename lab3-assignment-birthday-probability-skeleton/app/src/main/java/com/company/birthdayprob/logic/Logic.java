@@ -1,8 +1,18 @@
 package com.company.birthdayprob.logic;
 
+import android.support.v4.math.MathUtils;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 import com.company.birthdayprob.ui.OutputInterface;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * This is where the logic of this App is centralized for this assignment.
@@ -74,8 +84,31 @@ public class Logic
      * <p>
      * We provide you this method that way we can test it with unit testing.
      */
+    public static int getFactorial(int f) {
+        int result = 1;
+        for (int i = 1; i <= f; i++) {
+            result = result * i;
+        }
+        return result;
+    }
     public double calculate(int size, int count) {
-        // TODO -- add your code here
+        Set<Integer> my_set = new HashSet<Integer>();
+        double value = 0;
+        Random rand = new Random();
+        int randomNum;
+        for (int i = 0; i < count; i++) {
+            rand.setSeed(i);
+            for (int j = 0; j < size; j++) {
+                randomNum = rand.nextInt(365);
+                if (my_set.contains(randomNum)){
+                    value++;
+                    break;
+                }
+                my_set.add(randomNum);
+            }
+            my_set.clear();
+        }
+        return (value/count) * 100;
 
     }
     // TODO - add your code here
