@@ -1,5 +1,9 @@
 package com.company.buildings.logic;
 
+import static org.junit.Assert.assertEquals;
+
+import com.company.buildings.logic.tools.TestingOutputInterface;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,9 +14,6 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import io.magnum.autograder.junit.Rubric;
-import com.company.buildings.logic.tools.TestingOutputInterface;
-
-import static org.junit.Assert.*;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
